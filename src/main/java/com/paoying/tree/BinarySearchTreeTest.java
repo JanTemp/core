@@ -5,9 +5,9 @@ import java.util.Arrays;
 public class BinarySearchTreeTest {
 	public static void main(String[] args){
 		BinarySearchTree tree = new BinarySearchTree();
-		String[] values = new String[20];
+		int[] values = new int[20];
 		for(int i=0;i<20;i++){
-			String value = "" + (int)(Math.random()*100);
+			int value = (int)(Math.random()*100);
 			tree.insert(value);
 			values[i] = value;
 		}
@@ -15,6 +15,6 @@ public class BinarySearchTreeTest {
 		tree.inOrderTraverse();
 		System.out.println();
 		System.out.println("Search for "+values[10]+" and found: "+tree.find(values[10]));
-		System.out.println("Search for "+101+" and found: "+tree.find(""+101));
+		System.out.println("Search for "+101+" and found: "+tree.find(+101));
 	}
 }

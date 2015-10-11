@@ -2,21 +2,21 @@ package com.paoying.tree;
 
 public class BinaryTreeNode {
 	
-	private String data;
+	private int data;
 	
 	private BinaryTreeNode leftChild;
 	
 	private BinaryTreeNode rightChild;
 	
-	public BinaryTreeNode(String data){
+	public BinaryTreeNode(int data){
 		this.data = data;
 	}
 
-	public String getData() {
+	public int getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(int data) {
 		this.data = data;
 	}
 
@@ -37,7 +37,7 @@ public class BinaryTreeNode {
 	}
 	
 	public String toString(){
-		return data;
+		return ""+data;
 	}
 
 }

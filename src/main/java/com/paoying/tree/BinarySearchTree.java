@@ -4,7 +4,7 @@ public class BinarySearchTree {
 	
 	private BinaryTreeNode root;
 	
-	public void insert(String value){
+	public void insert(int value){
 		BinaryTreeNode newNode = new BinaryTreeNode(value);
 		if(root == null){
 			root = newNode;
@@ -14,9 +14,9 @@ public class BinarySearchTree {
 		BinaryTreeNode parent = null;
 		boolean isLeft = true;
 		while(current !=null){
-			String currentValue = current.getData();
+			int currentValue = current.getData();
 			parent = current;
-			if(currentValue.compareTo(value)>0){
+			if(value < currentValue){
 				current = current.getLeftChild();
 				isLeft = true;
 			}else{
@@ -31,16 +31,13 @@ public class BinarySearchTree {
 		}
 	}
 	
-	public BinaryTreeNode find(String value){
-		if(value == null){
-			return null;
-		}
+	public BinaryTreeNode find(int value){
 		BinaryTreeNode current = root;
 		while(true){
-			if(current == null || value.equals(current.getData())){
+			if(current == null || value == current.getData()){
 				return current;
 			}
-			if(value.compareTo(current.getData())<0){
+			if(value < current.getData()){
 				current = current.getLeftChild();
 			}else{
 				current = current.getRightChild();
