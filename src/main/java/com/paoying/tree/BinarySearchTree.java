@@ -31,6 +31,23 @@ public class BinarySearchTree {
 		}
 	}
 	
+	public BinaryTreeNode find(String value){
+		if(value == null){
+			return null;
+		}
+		BinaryTreeNode current = root;
+		while(true){
+			if(current == null || value.equals(current.getData())){
+				return current;
+			}
+			if(value.compareTo(current.getData())<0){
+				current = current.getLeftChild();
+			}else{
+				current = current.getRightChild();
+			}
+		}
+	}
+	
 	public void inOrderTraverse(){
 		recInOrderTraverse(root);
 	}

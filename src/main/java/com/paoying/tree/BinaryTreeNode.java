@@ -36,6 +36,8 @@ public class BinaryTreeNode {
 		this.rightChild = rightChild;
 	}
 	
-	
+	public String toString(){
+		return data;
+	}
 
 }

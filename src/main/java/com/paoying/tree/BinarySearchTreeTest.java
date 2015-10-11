@@ -13,5 +13,8 @@ public class BinarySearchTreeTest {
 		}
 		System.out.println(Arrays.toString(values));
 		tree.inOrderTraverse();
+		System.out.println();
+		System.out.println("Search for "+values[10]+" and found: "+tree.find(values[10]));
+		System.out.println("Search for "+101+" and found: "+tree.find(""+101));
 	}
 }
