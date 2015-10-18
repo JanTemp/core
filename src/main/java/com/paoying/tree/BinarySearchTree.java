@@ -45,6 +45,59 @@ public class BinarySearchTree {
 		}
 	}
 	
+	public void delete(int value){
+		//search for delete
+		BinaryTreeNode current = root;
+		BinaryTreeNode parent = null;
+		boolean isLeft = true;
+		while(current!=null && current.getData()!=value){
+			parent = current;
+			if(value < current.getData()){
+				current = current.getLeftChild();
+				isLeft = true;
+			}else{
+				current = current.getRightChild();
+				isLeft = false;
+			}
+		}
+		if(current == null){
+			return;
+		}
+		if(current.getLeftChild()==null || current.getRightChild()==null){
+			if(isLeft){
+				parent.setLeftChild(current.getLeftChild()==null?current.getRightChild():current.getLeftChild());
+			}else{
+				parent.setRightChild(current.getLeftChild()==null?current.getRightChild():current.getLeftChild());
+			}
+			return;
+		}
+		//if current has more than one child, find its successor first
+		BinaryTreeNode successor = detachSuccessor(current);
+		successor.setLeftChild(current.getLeftChild());
+		if(isLeft){
+			parent.setLeftChild(successor);
+		}else{
+			parent.setRightChild(successor);
+		}
+		if(successor!=current.getRightChild()){
+			successor.setRightChild(current.getRightChild());
+		}
+	}
+
+
+	private BinaryTreeNode detachSuccessor(BinaryTreeNode toBeDeleted) {
+		BinaryTreeNode current = toBeDeleted.getRightChild();
+		BinaryTreeNode parent = toBeDeleted;
+		while(current.getLeftChild()!=null){
+			parent = current;
+			current = current.getLeftChild();
+		}
+		if(parent != toBeDeleted){
+			parent.setLeftChild(current.getRightChild());
+		}
+		return current;
+	}
+	
 	public void inOrderTraverse(){
 		recInOrderTraverse(root);
 	}
