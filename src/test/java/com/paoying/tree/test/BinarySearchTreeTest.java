@@ -90,6 +90,24 @@ public class BinarySearchTreeTest {
 	}
 	
 	@Test
+	public void deleteLeaf(){
+		generateRandomTree();
+		
+		tree.delete(35);
+		
+		assertThat(tree.find(35), is(nullValue()));
+	}
+	
+	@Test
+	public void deleteNonLeaf(){
+		generateRandomTree();
+		
+		tree.delete(31);
+		
+		assertThat(tree.find(31), is(nullValue()));
+	}
+	
+	@Test
 	public void insertDuplicates(){
 		for(int i=0;i<10;i++){
 			tree.insert(5);
@@ -100,21 +118,23 @@ public class BinarySearchTreeTest {
 	@After
 	public void checkInvariant(){
 		BinaryTreeNode node = tree.getRoot();
-		checkInvariant(node);
+		checkInvariant(node, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 	
-	private void checkInvariant(BinaryTreeNode node){
+	private void checkInvariant(BinaryTreeNode node, int lowLimit, int highLimit){
 		if(node == null){
 			return;
 		}
 		if(node.getLeftChild()!=null){
 			assertThat(node.getLeftChild().getData(), is(lessThan(node.getData())));
+			assertThat(node.getLeftChild().getData(), is(greaterThanOrEqualTo(lowLimit)));
 		}
 		if(node.getRightChild()!=null){
 			assertThat(node.getRightChild().getData(), is(greaterThanOrEqualTo(node.getData())));
+			assertThat(node.getRightChild().getData(), is(lessThan(highLimit)));
 		}
-		checkInvariant(node.getLeftChild());
-		checkInvariant(node.getRightChild());
+		checkInvariant(node.getLeftChild(), lowLimit, node.getData());
+		checkInvariant(node.getRightChild(), node.getData(), highLimit);
 		
 	}
 
