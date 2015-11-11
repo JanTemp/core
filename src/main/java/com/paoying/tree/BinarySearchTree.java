@@ -120,4 +120,14 @@ public class BinarySearchTree {
 		System.out.print(subRoot.getData() + " ");
 		recInOrderTraverse(subRoot.getRightChild());
 	}
+
+	public BinaryTreeNode getRoot() {
+		return root;
+	}
+
+	public void setRoot(BinaryTreeNode root) {
+		this.root = root;
+	}
+	
+	
 }
